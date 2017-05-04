@@ -2,6 +2,7 @@ package camt.cbsd.services;
 
 import camt.cbsd.dao.StudentDao;
 import camt.cbsd.entity.Student;
+import camt.cbsd.entity.security.User;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
 import org.hibernate.Hibernate;
@@ -69,5 +70,22 @@ public class StudentServiceImpl implements StudentService {
         student.setImage(newFilename);
         studentDao.addStudent(student);
         return student;
+    }
+
+    @Transactional
+    @Override
+    public Student getStudentForTransfer(String username) {
+        Student student = studentDao.findByUsername(username);
+        Hibernate.initialize(student.getUser());
+        return student;
+    }
+
+
+    @Override
+    @Transactional
+    public List<Student> queryStudent(String query) {
+        if (query == null || query.equals(""))
+            return studentDao.getStudents();
+        return studentDao.getStudents(query);
     }
 }

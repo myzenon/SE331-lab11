@@ -12,4 +12,6 @@ public interface StudentDao {
     Student findById(long id);
     Student addStudent(Student student);
     Integer size();
+    Student findByUsername(String username);
+    List<Student> getStudents(String searchText);
 }

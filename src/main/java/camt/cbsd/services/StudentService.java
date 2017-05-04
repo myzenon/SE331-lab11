@@ -15,4 +15,6 @@ public interface StudentService {
     Student findById(long id);
     Student addStudent(Student student);
     Student addStudent(Student student, String imageFileName, BufferedImage image) throws IOException;
+    Student getStudentForTransfer(String username);
+    List<Student> queryStudent(String query);
 }

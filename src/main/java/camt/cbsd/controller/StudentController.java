@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.imageio.ImageIO;
+import javax.servlet.http.HttpServletRequest;
 
 
 import java.awt.image.BufferedImage;
@@ -119,4 +120,18 @@ public class StudentController {
         }
 
     }
+
+
+    @GetMapping("/students")
+    public ResponseEntity<?> queryStudent(HttpServletRequest request,
+                                          @RequestParam("search") String query) {
+        List<Student> students = studentService.queryStudent(query);
+        if (students != null)
+            return ResponseEntity.ok(students);
+        else
+            //http code 204
+            return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+
+    }
+
 }

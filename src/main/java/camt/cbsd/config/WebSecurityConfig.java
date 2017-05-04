@@ -73,5 +73,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
         // disable page caching
         httpSecurity.headers().cacheControl();
+
+        // x-frame-option
+        httpSecurity.headers().frameOptions().sameOrigin();
     }
 }

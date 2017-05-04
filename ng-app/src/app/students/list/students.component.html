@@ -1,4 +1,15 @@
-
+<div class="row panel-body">
+  <div class="col-md-8 col-sm-8">
+    <div class="input-group">
+      <input type="text" class="form-control" placeholder="Search for..."
+             [(ngModel)]="search">
+      <span class="input-group-btn">
+ <button class="btn btn-default" type="button"
+         (click)="onSearch()">Go!</button>
+ </span>
+    </div>
+  </div>
+</div>
 	<div *ngFor="let student of students" class="row">
 		<div class="panel panel-primary col-md-8 col-sm-8" >
 				<div class="panel-heading">
@@ -11,9 +22,9 @@
 					<p *ngIf="student.gpa <= 2.5">Bad Student who get grade {{student.gpa  | number:'1.2-2'}}</p>
 					<div class="row">
             <div class="col-sm-offset-1 ">
-						<button type="button" class="btn btn-primary btn-xs col-md-1" (click)="downQuantity(student)">-</button>
-						<input type="text" class="col-md-1" [(ngModel)]="student.penAmount"/>
-						<button type="button" class="btn btn-primary btn-xs col-md-1" (click)="upQuantity(student)">+</button>
+						<button type="button" class="btn btn-primary btn-xs col-md-1 pen-button" (click)="downQuantity(student)">-</button>
+						<input type="text" class="col-md-1 pen-input" [(ngModel)]="student.penAmount"/>
+						<button type="button" class="btn btn-primary btn-xs col-md-1 pen-button" (click)="upQuantity(student)">+</button>
 					</div>
           </div>
 					</div>

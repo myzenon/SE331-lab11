@@ -1,7 +1,7 @@
 <ul class="nav nav-pills nav-stacked">
-  <li role="presentation" routerLinkActive="active"><a routerLink="/list">List</a></li>
-  <li role="presentation" routerLinkActive="active"><a routerLink="/add">Add</a></li>
-  <li role="presentation" class="dropdown">
+  <li role="presentation" routerLinkActive="active" *ngIf="hasRole('ADMIN,USER')"><a routerLink="/list">List</a></li>
+  <li role="presentation" routerLinkActive="active" *ngIf="hasRole('ADMIN')"><a routerLink="/add">Add</a></li>
+  <li role="presentation" class="dropdown" *ngIf="hasRole('ADMIN,USER')">
     <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
       View <span class="caret"></span>
     </a>
@@ -13,8 +13,8 @@
       </li>
     </ul>
   </li>
-  <li role="presentation" routerLinkActive="active"><a routerLink="/courses">Course list</a></li>
-  <li role="presentation" routerLinkActive="active"><a routerLink="/add-course">Add Course</a></li>
+  <li role="presentation" routerLinkActive="active"><a routerLink="/courses" *ngIf="hasRole('ADMIN,USER')">Course list</a></li>
+  <li role="presentation" routerLinkActive="active"><a routerLink="/add-course"  *ngIf="hasRole('ADMIN')">Add Course</a></li>
 
 </ul>
 

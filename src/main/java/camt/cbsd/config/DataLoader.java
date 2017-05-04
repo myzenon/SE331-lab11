@@ -29,7 +29,10 @@ import java.util.Date;
  */
 @ConfigurationProperties(prefix="server")
 @Component
-public class DataLoader implements ApplicationRunner{
+public class DataLoader implements ApplicationRunner {
+
+    User user1, user2, user3;
+
     StudentDao studentDao;
     @Autowired
     public void setStudentDao(StudentDao studentDao) {
@@ -99,10 +102,21 @@ public class DataLoader implements ApplicationRunner{
 
         securitySetup();
 
+        student1.setUser(user1);
+//        System.out.println(student1.getUser().getFirstname());
+        user1.setStudent(student1);
+        student2.setUser(user2);
+        user2.setStudent(student2);
+        student3.setUser(user3);
+        user3.setStudent(student3);
+//        student1.setName("EIEI212");
+//        System.out.println(studentDao.getStudents().get(0));
+////        System.out.println(userSecurityRepository.findAll());
 
     }
+
     private void securitySetup() {
-        User user1 = User.builder()
+        this.user1 = User.builder()
                 .username("admin")
                 .password("admin")
                 .firstname("admin")
@@ -112,7 +126,7 @@ public class DataLoader implements ApplicationRunner{
                 .lastPasswordResetDate(Date.from(LocalDate.of(2016, 01, 01).atStartOfDay(ZoneId.systemDefault()).toInstant()))
                 .build();
 
-        User user2 = User.builder()
+        this.user2 = User.builder()
                 .username("user")
                 .password("user")
                 .firstname("user")
@@ -121,7 +135,7 @@ public class DataLoader implements ApplicationRunner{
                 .enabled(true)
                 .lastPasswordResetDate(Date.from(LocalDate.of(2016, 01, 01).atStartOfDay(ZoneId.systemDefault()).toInstant()))
                 .build();
-        User user3 = User.builder()
+        this.user3 = User.builder()
                 .username("disabled")
                 .password("disabled")
                 .firstname("user")

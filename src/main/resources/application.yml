@@ -10,7 +10,7 @@ spring:
 server:
   baseUrl: http://localhost:8080/
   imageUrl: student/images/
-  imageServerDir: c:/bitbucket/images/
+  imageServerDir: C:\Users\sizen\Desktop\Projects\SE331-lab11\images\
 jwt:
   header: Authorization
   secret: mySecret

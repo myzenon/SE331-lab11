@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {Student} from '../student';
-import {ActivatedRoute, Params} from "@angular/router";
+import {ActivatedRoute, Params, Router} from "@angular/router";
 import {StudentsDataService} from "../../service/students-data.service";
 import 'rxjs/add/operator/switchMap';
 @Component({
@@ -9,7 +9,7 @@ import 'rxjs/add/operator/switchMap';
   styleUrls: ['./students.view.component.css']
 })
 export class StudentsViewComponent {
-  constructor(private route: ActivatedRoute, private studentDataService: StudentsDataService) {
+  constructor(private route: ActivatedRoute, private studentDataService: StudentsDataService, private router: Router) {
   }
 
   student: Student;
@@ -17,6 +17,14 @@ export class StudentsViewComponent {
   inputCount: number;
 
   ngOnInit() {
+    this.studentDataService.getStudentsData()
+      .subscribe(
+        (abc) => {},
+        (error : Error) => {
+          if (error.message === 'UnAuthorize'){
+            this.router.navigate(['login'], {queryParams:{source:'student'}});
+          }
+        });
     this.isNoData = false;
     this.inputCount = 15;
     this.route.params
